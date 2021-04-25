@@ -1,0 +1,32 @@
+body{
+    margin: 0;
+    padding: 0;
+
+}
+
+main div{
+    position: relative;
+    width:90%;
+   margin: 0% auto;
+}
+.background{
+    width: 100%;
+}
+.bushead{
+    position: absolute;
+    top: 3%;
+    left: 40%;
+    font-size: 500%;
+    color: white;
+    background-color: rgb(56, 90, 104);
+    font-family:cursive
+}
+.paragraph{
+    position: absolute;
+    top: 20%;
+    left: 56%;
+    font-size: 150%;
+    color: white;
+    background-color:orangered;
+    font-family:fantasy
+}
