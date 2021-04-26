@@ -15,6 +15,11 @@ let totalClicks = 0;
 Items.pushedItemsArray=[];
 Items.previousCurrentItems=[];
 
+
+let productName=[];
+
+
+
 function Items(name, src) {
   this.name = name;
   this.src = src;
@@ -27,6 +32,61 @@ function Items(name, src) {
 function randomNumber() {
   return Math.floor(Math.random() * Items.pushedItemsArray.length);
 }
+
+
+
+function renderChart(){
+
+  let clicks=[];
+  let names=[];
+  let timesShown=[];
+
+  for(let i=0; i<Items.pushedItemsArray.length ;i++)
+  {
+    clicks.push(Items.pushedItemsArray[i].clicks);
+    names.push(Items.pushedItemsArray[i].name);
+    timesShown.push(Items.pushedItemsArray[i].timesShown);
+
+
+  }
+
+  let ctx = document.getElementById('myChart').getContext('2d');
+  let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: names,
+      datasets: [{
+        label: '# of Votes',
+        data: clicks,
+        backgroundColor:
+          'rgba(255, 99, 132, 0.2)',
+     
+        borderColor:
+          'rgba(255, 99, 132, 1)',
+        borderWidth: 1
+      },
+      {
+        label: '# of timeShown',
+        data: timesShown,
+        backgroundColor:
+          'rgba(144, 99, 100, 0.2)',
+     
+        borderColor:
+          'rgba(144, 99, 100, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
+
+
 
 function CreatItems() {
   for(let i = 0; i < itemsNamesArray.length; i++) {
@@ -91,6 +151,7 @@ let clickHandler = function(event) {
 
   if(totalClicks === attempts) {
     ImgsContainer.removeEventListener('click', clickHandler);
+    renderChart();
     ViewListFunction();
   }
   displayItems();
@@ -103,7 +164,7 @@ function ViewListFunction(event) {
   {
     let liElement=document.createElement('li');
     ulElement.appendChild(liElement);
-    liElement.textContent=Items.pushedItemsArray[i].name+'had a '+Items.pushedItemsArray[i].clicks+'votes , and was seen a '+Items.pushedItemsArray[i].timesShown;
+    liElement.textContent=Items.pushedItemsArray[i].name+'had a '+Items.pushedItemsArray[i].clicks+' votes , and was seen a '+Items.pushedItemsArray[i].timesShown;
 
   }
   Resultbutton.removeEventListener('click',ViewListFunction);
