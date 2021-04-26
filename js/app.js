@@ -7,7 +7,6 @@ let ImgsContainer = document.getElementById('items');
 let rightImg =document.getElementById('right');
 let centerImg =document.getElementById('center');
 let leftImg =document.getElementById('left');
-let clickList=document.getElementById('list');
 let Resultbutton=document.getElementById('ViewResults');
 let ulElement=document.getElementById('list');
 
@@ -40,6 +39,7 @@ function CreatItems() {
 let leftclick =0;
 let centerclick =0;
 let rightclick =0;
+let attempts=25;
 
 
 function displayItems() {
@@ -76,8 +76,8 @@ let clickHandler = function(event) {
     return alert('please click on the image');
   }
   totalClicks++;
-  let clickedItem = event.target;
-  let id = clickedItem.id;
+  let clickedImage = event.target;
+  let id = clickedImage.id;
   if (id === 'right'){
     rightclick.clicks++;
   }
@@ -89,12 +89,12 @@ let clickHandler = function(event) {
   }
 
 
-  if(totalClicks === 25) {
+  if(totalClicks === attempts) {
+    ImgsContainer.removeEventListener('click', clickHandler);
     ViewListFunction();
   }
+  displayItems();
 };
-
-
 
 ImgsContainer.addEventListener('click', clickHandler);
 
