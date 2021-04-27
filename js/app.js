@@ -16,8 +16,6 @@ Items.pushedItemsArray=[];
 Items.previousCurrentItems=[];
 
 
-let productName=[];
-
 
 
 function Items(name, src) {
@@ -60,7 +58,7 @@ function renderChart(){
         data: clicks,
         backgroundColor:
           'rgba(255, 99, 132, 0.2)',
-     
+
         borderColor:
           'rgba(255, 99, 132, 1)',
         borderWidth: 1
@@ -70,7 +68,7 @@ function renderChart(){
         data: timesShown,
         backgroundColor:
           'rgba(144, 99, 100, 0.2)',
-     
+
         borderColor:
           'rgba(144, 99, 100, 1)',
         borderWidth: 1
@@ -102,14 +100,49 @@ let rightclick =0;
 let attempts=25;
 
 
-function displayItems() {
-  while (Items.previousCurrentItems.length < 6) {
-    let number = randomNumber();
-    if (!Items.previousCurrentItems.includes(number)) {
-      Items.previousCurrentItems.push(number);
-      console.log(randomNumber);
+// function displayItems() {
+
+//   while (Items.previousCurrentItems.length < 6) {
+//     let fstRandom=randomNumber();
+//     let sndRandom=randomNumber();
+//     let trdRandom=randomNumber();
+//     let fourRandom=randomNumber();
+//     let fiveRandom=randomNumber();
+//     let sixRandom=randomNumber();
+//     if( fstRandom !== sndRandom && fstRandom !== trdRandom && trdRandom !== sndRandom && fourRandom !== fiveRandom && fiveRandom !== sixRandom && fourRandom !== sixRandom && fstRandom !== sixRandom && fstRandom !== fourRandom && fstRandom !== fiveRandom && sndRandom !== fourRandom && sndRandom !== fiveRandom && sndRandom !== sixRandom && trdRandom !== fourRandom && trdRandom !== fiveRandom && trdRandom !==sixRandom){
+//       Items.previousCurrentItems.push(fstRandom);
+//       Items.previousCurrentItems.push(sndRandom);
+//       Items.previousCurrentItems.push(trdRandom);
+//       Items.previousCurrentItems.push(fourRandom);
+//       Items.previousCurrentItems.push(fiveRandom);
+//       Items.previousCurrentItems.push(sixRandom);
+//       // Items.previousCurrentItems.push(fstRandom);
+//       // Items.previousCurrentItems.push(sndRandom);
+//       // Items.previousCurrentItems.push(trdRandom);
+
+//       console.log(Items.previousCurrentItems);
+//     }
+
+//     fstRandom=randomNumber();
+//     sndRandom=randomNumber();
+//     trdRandom=randomNumber();
+//     fourRandom=randomNumber();
+//     fiveRandom=randomNumber();
+//     sixRandom=randomNumber();
+//   }
+
+
+  // console.log(Items.previousCurrentItems.length);
+
+
+  function displayItems() {
+    while (Items.previousCurrentItems.length < 6) {
+      let number = randomNumber();
+      if (!Items.previousCurrentItems.includes(number)) {
+        Items.previousCurrentItems.push(number);
+      }
     }
-  }
+
 
 
   // here I choose a random number from the stored random which is in the previousCurrent[] array
