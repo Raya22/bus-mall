@@ -132,16 +132,22 @@ let attempts=25;
 //   }
 
 
-  // console.log(Items.previousCurrentItems.length);
+// console.log(Items.previousCurrentItems.length);
 
 
-  function displayItems() {
-    while (Items.previousCurrentItems.length < 6) {
-      let number = randomNumber();
-      if (!Items.previousCurrentItems.includes(number)) {
-        Items.previousCurrentItems.push(number);
-      }
+
+function saveData(){
+  localStorage.setItem('Items', JSON.stringify(Items.pushedItemsArray));
+}
+
+
+function displayItems() {
+  while (Items.previousCurrentItems.length < 6) {
+    let number = randomNumber();
+    if (!Items.previousCurrentItems.includes(number)) {
+      Items.previousCurrentItems.push(number);
     }
+  }
 
 
 
@@ -164,6 +170,28 @@ let attempts=25;
   Items.previousCurrentItems = Items.previousCurrentItems.slice(3, 6);
 }
 
+
+
+
+function getData()
+{
+  let data = JSON.parse(localStorage.getItem('Items'));
+  if(localStorage.setProducts) {
+    let stringifyItems = localStorage.getItem('Items');
+    Items.pushedItemsArray = JSON.parse(stringifyItems);
+  } else {
+    for(let i=0 ; i<data.length;i++)
+    {
+      new Items(data[i].name, data[i].src);
+    }
+    CreatItems();
+
+  }
+  // localStorage.setItem('Items', JSON.stringify(Items.pushedItemsArray));
+}
+getData();
+
+
 let clickHandler = function(event) {
   if (event.target === ImgsContainer) {
     return alert('please click on the image');
@@ -180,15 +208,19 @@ let clickHandler = function(event) {
   if (id === 'left'){
     leftclick.clicks++;
   }
-
-
   if(totalClicks === attempts) {
     ImgsContainer.removeEventListener('click', clickHandler);
-    renderChart();
+  
     ViewListFunction();
+    renderChart();
+    // localStorage.setItem('Items', JSON.stringify(Items.pushedItemsArray));
+
   }
   displayItems();
+ 
 };
+
+
 
 ImgsContainer.addEventListener('click', clickHandler);
 
@@ -205,9 +237,10 @@ function ViewListFunction(event) {
 
 Resultbutton.addEventListener('click',ViewListFunction);
 
-CreatItems();
 
+CreatItems();
 displayItems();
+// SaveData();
 
 
 
